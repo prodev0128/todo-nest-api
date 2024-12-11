@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Todo } from './schemas/todo.schema';
+
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { Todo } from './schemas/todo.schema';
 
 @Injectable()
 export class TodoService {
@@ -38,10 +39,11 @@ export class TodoService {
     return updatedTodo;
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: string): Promise<Todo> {
     const result = await this.todoModel.findByIdAndDelete(id).exec();
     if (!result) {
       throw new NotFoundException(`Todo with ID ${id} not found`);
     }
+    return result;
   }
 }
