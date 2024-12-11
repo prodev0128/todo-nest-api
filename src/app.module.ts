@@ -1,9 +1,9 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { LoggingMiddleware } from './logging.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LoggingMiddleware } from './logging.middleware';
 import { TodoModule } from './todo/todo.module';
 
 @Module({
